@@ -8,8 +8,8 @@ LFLAGS = -LC:\mingw_lib\lib
 LIBS = -lmingw32 -lSDL2main -lSDL2
 
 # Source files
-SRCS = tdmain.c
-OBJS = $(SRCS:.c=.o)
+SRCS = tdmain.cc
+OBJS = $(SRCS:.cc=.o)
 
 # Main target name
 MAIN = tdgame
@@ -19,12 +19,12 @@ all: $(MAIN)
 
 # Game compilation
 $(MAIN): $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o out/$(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
 
-# Suffix replacement rule for building .o from .c
-.c.o:
+# Suffix replacement rule for building .o from .cc
+.cc.o:
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 # Make clean
 clean:
-	$(RM) $(MAIN) *.o *~
+	$(RM) out/$(MAIN) *.o *~
